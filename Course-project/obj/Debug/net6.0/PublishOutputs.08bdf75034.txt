@@ -1,0 +1,7 @@
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\Course-project.exe
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\appsettings.Development.json
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\appsettings.json
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\Course-project.dll
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\Course-project.deps.json
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\Course-project.runtimeconfig.json
+D:\education\itra\Course-project\Course-project\bin\Debug\net6.0\publish\Course-project.pdb
