@@ -6,6 +6,7 @@ namespace Course_project.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
     }
