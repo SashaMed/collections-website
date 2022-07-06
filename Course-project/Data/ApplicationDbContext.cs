@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Course_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +23,14 @@ namespace Course_project.Data
                     Email ="sirlolka@gmail.com"
                 });
             base.OnModelCreating(builder);
-
         }
+
+        public DbSet<Collection> Collections { get; set; }
+
+        public DbSet<Item> Items { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<TagConnection> TagConnections { get; set; }
     }
 }

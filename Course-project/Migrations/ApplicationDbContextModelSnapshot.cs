@@ -22,6 +22,185 @@ namespace Course_project.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Course_project.Models.Collection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BoolName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BoolName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BoolName3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateName3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IntName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IntName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IntName3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeStringName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeStringName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeStringName3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringName3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collections");
+                });
+
+            modelBuilder.Entity("Course_project.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BoolCustom1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("BoolCustom2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("BoolCustom3")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CollectionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCustom1")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCustom2")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCustom3")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IntCustom1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IntCustom2")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IntCustom3")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LargeDescriptionCustom1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeDescriptionCustom2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeDescriptionCustom3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringCustom1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringCustom2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StringCustom3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Course_project.Models.Tag", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Course_project.Models.TagConnection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TagId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TagConnections");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -143,12 +322,12 @@ namespace Course_project.Migrations
                         {
                             Id = "sasha",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a3003b1e-7e47-40bf-b65c-b905335bcfdb",
+                            ConcurrencyStamp = "defcad55-24ed-4ac5-9a05-6f46fdd9ddda",
                             Email = "sirlolka@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3987e1c1-3cc0-49e3-a45c-11d4e027b0d4",
+                            SecurityStamp = "264bd590-4889-47e4-b141-7a57e6232fa1",
                             TwoFactorEnabled = false,
                             UserName = "sasha"
                         });

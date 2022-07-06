@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5z5/Wl8KKrs8uCUnmBvM+w4KIpuzyzsGNdxicw2+ZZQ=",
+  "Hash": "g1RTZtcB/IuE+yjsa0J4RQ70x/knwm/7dNp7hlktqCw=",
   "Source": "Course-project",
   "BasePath": "_content/Course-project",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "D:\\education\\itra\\Course-project\\Course-project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Course-project.bundle.scp.css"
     },
     {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\css\\amsify.suggestags.css",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "css/amsify.suggestags.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\amsify.suggestags.css"
+    },
+    {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\css\\site.css",
       "SourceId": "Course-project",
       "SourceType": "Discovered",
@@ -83,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\jquery.amsify.suggestags.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/jquery.amsify.suggestags.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\jquery.amsify.suggestags.js"
     },
     {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\site.js",

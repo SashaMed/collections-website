@@ -1,0 +1,72 @@
+﻿@model MyPageViewModel
+
+@{
+	ViewData["Title"] = "My page";
+}
+
+
+<section class="jumbotron text-center">
+	<div class="container">
+		<h1 class="jumbotron-heading">@User.Identity?.Name page</h1>
+		<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+		<p>
+			<form method="post">
+				<a asp-area="" asp-controller="Collection" asp-action="Create" class="btn btn-primary">+ collection</a>
+			</form>
+		</p>
+	</div>
+</section>
+
+<div class="album py-5 bg-light">
+	<div class="container">
+		@if (Model.collections.Count == 0)
+		{
+			<div class="row">
+				<h2>
+					<center>No collections yet<center>
+				</h2>
+			</div>
+		}
+		else
+		{
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.collections[0].Name)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.collections[0].Description)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.collections[0].Type)
+						</th>
+
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var collection in Model.collections)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => collection.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => collection.Description)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => collection.Type)
+							</td>
+							<td>
+								<form method="post">
+									<a asp-area="" asp-controller="Collection" asp-action="CollectionItems" asp-route-CollectionId="@collection.Id">View Collection</a> |
+									<a asp-area="" asp-controller="Collection" asp-action="Delete" asp-route-id="@collection.Id">Delete Collection</a>
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		}

@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System.Security.Claims;
+using System.Text;
+using Course_project.Data;
 using Course_project.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -10,14 +13,16 @@ namespace Course_project.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
 
         public AccountController(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
 
@@ -97,6 +102,29 @@ namespace Course_project.Controllers
             return View(registerViewModel);
         }
 
+        //[HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
+        [Authorize]
+        public IActionResult MyPage()
+        {
+            var page = new MyPageViewModel();
+            var userId = GetUserId();
+            page.collections = _context.Collections.Where(e => e.AuthorId == userId).ToList();
+            return View(page);
+        }
+
+
+        public string GetUserId()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+            return userId;
+        }
     }
 }

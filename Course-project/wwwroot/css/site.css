@@ -17,3 +17,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+input[type=text] {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+input[type=submit] {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+input[type=checkbox] {
+    padding: 10px;
+    margin: 10px 0;
+}
