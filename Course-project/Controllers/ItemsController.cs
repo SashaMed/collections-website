@@ -10,6 +10,7 @@ using Course_project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Course_project.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Course_project.Controllers
 {
@@ -55,10 +56,21 @@ namespace Course_project.Controllers
                 return NotFound();
             }
 
+            var tagConnections = _context.TagConnections.Where(m => m.ItemId == id);
+            var tagList = new List<Tag>();
+            if (tagConnections != null)
+            {
+                foreach (var tag in tagConnections)
+                {
+                    tagList.Add(_context.Tags.Find(tag.TagId));
+                }
+            }
+
             var response = new DetailsItemViewModel
             {
                 collection = collection,
-                item = item
+                item = item,
+                tags = tagList
             };
             return View(response);
         }
@@ -154,17 +166,10 @@ namespace Course_project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditItemViewModel input)
         {
-            //Item item = new Item();
-            //if (item == null)
-            //{
-            //    return NotFound();
-            //}
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    //item = input.ThisItem;
                     if (input.Image != null)
                     {
                         var result = await _photoService.AddPhotoAsync(input.Image);
@@ -213,6 +218,30 @@ namespace Course_project.Controllers
         private bool ItemExists(int id)
         {
           return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        public IActionResult TagSearch(string id)
+        {
+            var connections = _context.TagConnections.Where(m => m.TagId == id);
+            var items = new List<Item>();
+            foreach (var connection in connections)
+            {
+                items.Add(_context.Items.FirstOrDefault(e => e.Id == connection.ItemId));
+            }
+
+            return View(new TagSearchViewModel { 
+                items = items,
+                tag = _context.Tags.FirstOrDefault(e => e.Id == id),
+                userId = GetUserId()
+            });
+        }
+
+        public string GetUserId()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+            return userId;
         }
     }
 }

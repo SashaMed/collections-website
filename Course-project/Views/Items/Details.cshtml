@@ -22,6 +22,11 @@
 		<div class="col-md-4">
 			<h3 class="my-3">Collection type</h3>
 			<p>@Model.collection.Type</p>
+			<h3 class="my-3">Tags</h3>
+			@foreach(var tag in Model.tags)
+			{
+				<a asp-area="" asp-controller="Items" asp-action="TagSearch" asp-route-id="@tag.Id" class="btn btn-secondary my-2">@tag.Name</a>
+			}
 			@if (Model.collection.StringName1 != null)
 			{
 				<h5 class="my-3">@Model.collection.StringName1</h5>

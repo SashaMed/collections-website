@@ -8,5 +8,7 @@ namespace Course_project.ViewModels
 
 		public Collection collection { get; set; }
 
+		public List<Tag> tags { get; set; }
+
 	}
 }
