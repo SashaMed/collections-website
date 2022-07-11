@@ -15,12 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\education\itra\Course-project\Course-project
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/education/itra/Course-project/Course-project/Views/Account/MyPage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNeVBhZ2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/education/itra/Course-project/Course-project/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/education/itra/Course-project/Course-project/Views/Account/UserPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/education/itra/Course-project/Course-project/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/education/itra/Course-project/Course-project/Views/Collection/CollectionItems.cshtml]

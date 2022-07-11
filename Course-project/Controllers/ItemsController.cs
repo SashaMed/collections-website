@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Course_project.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using PusherServer;
 
 namespace Course_project.Controllers
 {
@@ -19,22 +20,56 @@ namespace Course_project.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IPhotoService _photoService;
 
+
         public ItemsController(ApplicationDbContext context, IPhotoService photoService)
         {
             _context = context;
             _photoService = photoService;
         }
 
-        // GET: Items
-        public async Task<IActionResult> Index()
+
+
+        public async Task<IActionResult> Index(int page = 1)
         {
-            
-              return _context.Items != null ? 
-                          View(new IndexItemViewModel(await _context.Items.ToListAsync())) :
-                          Problem("Entity set 'ApplicationDbContext.Items'  is null.");
+            int pageSize = 15;   
+            var count = await _context.Items.CountAsync();
+            var items = await _context.Items.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexItemViewModel viewModel = new IndexItemViewModel
+            {
+                UserId = GetUserId(),
+                PageViewModel = pageViewModel,
+                Items = items
+            };
+            return View(viewModel);
         }
 
-        // GET: Items/Details/5
+        public IActionResult TagSearch(string id)
+        {
+            var tag = _context.Tags.FirstOrDefault(m => m.Name == id);
+            var tagId = tag.Id;
+            var connections = _context.TagConnections.Where(m => m.TagId == tagId);
+            var items = new List<Item>();
+            foreach (var connection in connections)
+            {
+                var t = _context.Items.FirstOrDefault(e => e.Id == connection.ItemId);
+                if (t != null)
+                {
+                    items.Add(t);
+                }
+            }
+
+            return View(new TagSearchViewModel
+            {
+                items = items,
+                tag = tag,
+                userId = GetUserId()
+            });
+        }
+
+
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Items == null)
@@ -66,14 +101,21 @@ namespace Course_project.Controllers
                 }
             }
 
+            var comments = _context.Comments.Where(m => m.ItemId == id).ToList();
+
             var response = new DetailsItemViewModel
             {
+                comments = comments,
+                userName = HttpContext.User.Identity.Name,
+                userId = GetUserId(),
                 collection = collection,
                 item = item,
                 tags = tagList
             };
             return View(response);
         }
+
+
 
         [Authorize]
         public IActionResult Create(int? CollectionId)
@@ -114,9 +156,8 @@ namespace Course_project.Controllers
                 var t = await _context.Tags.FirstOrDefaultAsync(m => m.Name == tag);
                 if (t == null)
                 {
-                    var tagId = Guid.NewGuid().ToString();
                     t = new Tag { 
-                        Id = tagId,
+                        Id = tag,
                         Name = tag };
                     _context.Tags.Add(t);
                 }
@@ -220,28 +261,19 @@ namespace Course_project.Controllers
           return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        public IActionResult TagSearch(string id)
-        {
-            var connections = _context.TagConnections.Where(m => m.TagId == id);
-            var items = new List<Item>();
-            foreach (var connection in connections)
-            {
-                items.Add(_context.Items.FirstOrDefault(e => e.Id == connection.ItemId));
-            }
 
-            return View(new TagSearchViewModel { 
-                items = items,
-                tag = _context.Tags.FirstOrDefault(e => e.Id == id),
-                userId = GetUserId()
-            });
-        }
+        
 
         public string GetUserId()
         {
-            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
-            return userId;
+            if (User.Identity.IsAuthenticated)
+            {
+                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                var userId = claim.Value;
+                return userId;
+            }
+            return null;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g1RTZtcB/IuE+yjsa0J4RQ70x/knwm/7dNp7hlktqCw=",
+  "Hash": "HXBDGnKOX8L2BmqtfffaSS1uAoG+T5ljyrOuzDnCugY=",
   "Source": "Course-project",
   "BasePath": "_content/Course-project",
   "Mode": "Default",
@@ -102,6 +102,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\chat.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\jquery.amsify.suggestags.js",
       "SourceId": "Course-project",
       "SourceType": "Discovered",
@@ -119,6 +136,23 @@
       "OriginalItemSpec": "wwwroot\\js\\jquery.amsify.suggestags.js"
     },
     {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\likes.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/likes.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\likes.js"
+    },
+    {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\site.js",
       "SourceId": "Course-project",
       "SourceType": "Discovered",
@@ -134,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\tagCloud.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/tagCloud.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\tagCloud.js"
     },
     {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
@@ -1103,6 +1154,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\microsoft-signalr\\signalr.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "microsoft-signalr/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft-signalr\\signalr.js"
+    },
+    {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\microsoft-signalr\\signalr.min.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "microsoft-signalr/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft-signalr\\signalr.min.js"
     }
   ]
 }

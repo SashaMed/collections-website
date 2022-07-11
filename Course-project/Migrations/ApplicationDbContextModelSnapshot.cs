@@ -95,6 +95,37 @@ namespace Course_project.Migrations
                     b.ToTable("Collections");
                 });
 
+            modelBuilder.Entity("Course_project.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Course_project.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -165,6 +196,26 @@ namespace Course_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Course_project.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("Course_project.Models.Tag", b =>
@@ -322,12 +373,12 @@ namespace Course_project.Migrations
                         {
                             Id = "sasha",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "defcad55-24ed-4ac5-9a05-6f46fdd9ddda",
+                            ConcurrencyStamp = "6ee71380-3985-44bb-8870-9c7ef9fa77b6",
                             Email = "sirlolka@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "264bd590-4889-47e4-b141-7a57e6232fa1",
+                            SecurityStamp = "fa81d6f3-163e-41ba-86e8-aaeafd84aa03",
                             TwoFactorEnabled = false,
                             UserName = "sasha"
                         });

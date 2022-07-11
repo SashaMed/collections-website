@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Course_project.Data;
+using Course_project.Helpers;
 using Course_project.Models;
 using Course_project.Models.Enums;
 using Course_project.ViewModels;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Course_project.Controllers
 {
-    [Authorize]
+
     public class CollectionController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,15 +22,43 @@ namespace Course_project.Controllers
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(CollectionType? type, int page = 1,
+                    SortState sortOrder = SortState.NameAsc)
         {
-            return View();
+            IQueryable<Collection> collections = _context.Collections;
+
+            var viewModelOptions = new ViewModelOptions()
+            {
+                Collections = collections
+            }.GetSortedAndFilteredCollection(type,page, sortOrder);
+            
+            IndexCollectionViewModel viewModel = new IndexCollectionViewModel
+            {
+                PageViewModel = new PageViewModel(viewModelOptions.Result.Count, page, viewModelOptions.Result.PageSizeCollection),
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(_context.Collections.ToList(), type, nameof(type)),
+                Collections = viewModelOptions.Result.Items
+            };
+            return View(viewModel);
         }
 
-        public async Task<IActionResult> CollectionItems(int? CollectionId)
+        public async Task<IActionResult> CollectionItems(int? CollectionId, int page = 1)
         {
-            return View(new CollectionItemsViewModel(await _context.Items.Where(e => e.CollectionId == CollectionId).ToListAsync(),
-                await _context.Collections.FindAsync(CollectionId)));
+            int pageSize = 15;
+            List<Item> items = new List<Item>();
+            var count = await _context.Items.Where(m => m.CollectionId == CollectionId).CountAsync();
+            if (count <= pageSize)
+            {
+                items = await _context.Items.Where(e => e.CollectionId == CollectionId).ToListAsync();
+            }
+            else
+            {
+                items = await _context.Items.Skip((page - 1) * pageSize).Take(pageSize).Where(e => e.CollectionId == CollectionId).ToListAsync();
+            }
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            var response = new CollectionItemsViewModel(items, _context.Collections.FirstOrDefault(m => m.Id == CollectionId), pageViewModel, GetUserId());
+            return View(response);
+
         }
 
         [Authorize]
@@ -53,7 +82,7 @@ namespace Course_project.Controllers
                 _context.Collections.Remove(collection);
                 _context.SaveChanges();
             }
-            return RedirectToAction("MyPage", "Account");
+            return RedirectToAction("UserPage", "Account");
         }
 
 
@@ -90,15 +119,19 @@ namespace Course_project.Controllers
             };
             _context.Collections.Add(collection);
             await _context.SaveChangesAsync();
-            return RedirectToAction("MyPage", "Account");
+            return RedirectToAction("UserPage", "Account");
         }
 
         public string GetUserId()
         {
-            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
-            return userId;
+            if (User.Identity.IsAuthenticated)
+            {
+                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                var userId = claim.Value;
+                return userId;
+            }
+            return null;
         }
     }
 }

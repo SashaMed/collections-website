@@ -40,6 +40,14 @@ namespace Course_project.Migrations
                     table.PrimaryKey("PK_Items", x => x.Id);
                 });
 
+            migrationBuilder.Sql(
+                sql: "CREATE FULLTEXT CATALOG ftCatalog AS DEFAULT;",
+                suppressTransaction: true);
+
+            migrationBuilder.Sql(
+                sql: "CREATE FULLTEXT INDEX ON Posts(Content) KEY INDEX PK_Posts;",
+                suppressTransaction: true);
+
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",

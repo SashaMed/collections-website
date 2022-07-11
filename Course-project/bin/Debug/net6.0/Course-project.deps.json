@@ -9,11 +9,13 @@
       "Course-project/1.0.0": {
         "dependencies": {
           "CloudinaryDotNet": "1.19.0",
+          "Microsoft.AspNet.Mvc": "5.2.9",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.6",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.6"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.6",
+          "PusherServer": "4.6.1"
         },
         "runtime": {
           "Course-project.dll": {}
@@ -66,6 +68,50 @@
         }
       },
       "MessagePackAnalyzer/2.1.152": {},
+      "Microsoft.AspNet.Mvc/5.2.9": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.2.9",
+          "Microsoft.AspNet.WebPages": "3.2.9"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Mvc.dll": {
+            "assemblyVersion": "5.2.9.0",
+            "fileVersion": "5.2.61129.10"
+          }
+        }
+      },
+      "Microsoft.AspNet.Razor/3.2.9": {
+        "runtime": {
+          "lib/net45/System.Web.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          }
+        }
+      },
+      "Microsoft.AspNet.WebPages/3.2.9": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.2.9",
+          "Microsoft.Web.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Helpers.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.Deployment.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          },
+          "lib/net45/System.Web.WebPages.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.61129.10"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.6": {
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -1288,6 +1334,14 @@
           }
         }
       },
+      "Microsoft.Web.Infrastructure/1.0.0": {
+        "runtime": {
+          "lib/net40/Microsoft.Web.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.20105.407"
+          }
+        }
+      },
       "Microsoft.Win32.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1314,6 +1368,14 @@
             "assetType": "runtime",
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "NaCl.Net/0.1.13": {
+        "runtime": {
+          "lib/netstandard2.1/NaCl.dll": {
+            "assemblyVersion": "0.1.13.0",
+            "fileVersion": "0.1.13.0"
           }
         }
       },
@@ -1470,6 +1532,18 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {
             "assemblyVersion": "5.11.0.10",
             "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "PusherServer/4.6.1": {
+        "dependencies": {
+          "NaCl.Net": "0.1.13",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/PusherServer.dll": {
+            "assemblyVersion": "4.6.1.0",
+            "fileVersion": "4.6.1.0"
           }
         }
       },
@@ -2345,6 +2419,27 @@
       "path": "messagepackanalyzer/2.1.152",
       "hashPath": "messagepackanalyzer.2.1.152.nupkg.sha512"
     },
+    "Microsoft.AspNet.Mvc/5.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bcekKshCAh7kTWSMZPavQStSZQF/QmjEjO2gVWGITEd0/t5eRlb+ZLDE+az2qY1bZ8L6Hz0OCNeS0uzXtJcK5w==",
+      "path": "microsoft.aspnet.mvc/5.2.9",
+      "hashPath": "microsoft.aspnet.mvc.5.2.9.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Razor/3.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QOJEnEw3xp+t5lMvYR5nGCF4CfZpHqr2p8uZOBEgDZoB6r2txtSj6581YNr+/dOHjI3YRlo1QAKGQoSohbQ/KA==",
+      "path": "microsoft.aspnet.razor/3.2.9",
+      "hashPath": "microsoft.aspnet.razor.3.2.9.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebPages/3.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yByb721lwv8YFsx1oKA5CLKXa89XVbVMkPafS4bg/bPelBEgChq/coFBQEkA4kwcabG7AR56w3vapnoZUfr2Cw==",
+      "path": "microsoft.aspnet.webpages/3.2.9",
+      "hashPath": "microsoft.aspnet.webpages.3.2.9.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.6": {
       "type": "package",
       "serviceable": true,
@@ -2807,6 +2902,13 @@
       "path": "microsoft.visualstudio.web.codegenerators.mvc/6.0.6",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.6.0.6.nupkg.sha512"
     },
+    "Microsoft.Web.Infrastructure/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
+      "path": "microsoft.web.infrastructure/1.0.0",
+      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
+    },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2827,6 +2929,13 @@
       "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
+    },
+    "NaCl.Net/0.1.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AVg1455RQnyTy6tiessudruZHvbl70QWRPyx3og2I1Fei17LDNc7Z3DRgqN2+PsySBui/1EDP4A7adhQXydi6g==",
+      "path": "nacl.net/0.1.13",
+      "hashPath": "nacl.net.0.1.13.nupkg.sha512"
     },
     "NETStandard.Library/1.6.1": {
       "type": "package",
@@ -2904,6 +3013,13 @@
       "sha512": "sha512-mCv/GzvMk5iatWoZY41PoIShEbwVxq9CDCc1fV/uqPFKZ4DD/1JuKZ5AL/FJJRsTanvMR3EOXKYCLdQ7PFYn8Q==",
       "path": "nuget.versioning/5.11.0",
       "hashPath": "nuget.versioning.5.11.0.nupkg.sha512"
+    },
+    "PusherServer/4.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3YUWmFAj5szTwxXmPXXMuaH7uO0OSt1CgqCbEIDERDxGPRw323U+vv+1nALvFaVPxAOS0TSYhTBCL9Ns+i/w8g==",
+      "path": "pusherserver/4.6.1",
+      "hashPath": "pusherserver.4.6.1.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

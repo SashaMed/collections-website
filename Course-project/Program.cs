@@ -16,13 +16,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddTransient<ApplicationDbContext>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>(); ;
-
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
+app.MapHub<CommentHub>("/items/Details");
 app.UseStaticFiles();
 app.UseRouting();
 

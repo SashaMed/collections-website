@@ -4,11 +4,9 @@ namespace Course_project.ViewModels
 {
     public class IndexItemViewModel
     {
+        public string UserId { get; set; }
         public List<Item> Items { get; set; }
 
-        public IndexItemViewModel(List<Item> items)
-        {
-            Items = items;
-        }
+        public PageViewModel PageViewModel { get; set; }
     }
 }
