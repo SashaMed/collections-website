@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HXBDGnKOX8L2BmqtfffaSS1uAoG+T5ljyrOuzDnCugY=",
+  "Hash": "H2E9ByEhC7fOJwovmM9QFXmOup3WUR/yjiEuYbW4QvI=",
   "Source": "Course-project",
   "BasePath": "_content/Course-project",
   "Mode": "Default",
@@ -117,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
+      "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\delete.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/delete.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\delete.js"
     },
     {
       "Identity": "D:\\education\\itra\\Course-project\\Course-project\\wwwroot\\js\\jquery.amsify.suggestags.js",

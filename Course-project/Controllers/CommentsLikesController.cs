@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Course_project.Data;
 using Course_project.Models;
+using Course_project.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Course_project.Controllers
@@ -17,7 +18,7 @@ namespace Course_project.Controllers
 
         public IActionResult GetLikesCheck(int id)
         {
-            var userId = GetUserId();
+            var userId = User.GetUserId();
             var likes = _context.Likes.Where(m => m.ItemId == id).ToList();
             var userLike = likes.Where(m => m.UserId == userId).ToList();
             if (userLike.Count() == 0)
@@ -35,7 +36,7 @@ namespace Course_project.Controllers
 
         public IActionResult OnLikeClick(int id)
         {
-            var userId = GetUserId();
+            var userId = User.GetUserId();
             var count = _context.Likes.Where(m => m.ItemId == id).ToList().Count();
             if (userId == null)
 			{
@@ -64,7 +65,7 @@ namespace Course_project.Controllers
             var message = new Comment
             {
                 Message = vars[0],
-                UserId = GetUserId(),
+                UserId = User.GetUserId(),
                 UserName = vars[2],
                 ItemId = int.Parse(vars[3]),
                 DateTime = DateTime.Now,
@@ -73,20 +74,6 @@ namespace Course_project.Controllers
             await _context.SaveChangesAsync();
 
             return Content("ok");
-        }
-
-         
-
-        public string GetUserId()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                var userId = claim.Value;
-                return userId;
-            }
-            return null;
         }
     }
 }

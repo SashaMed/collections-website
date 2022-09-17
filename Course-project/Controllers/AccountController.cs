@@ -4,7 +4,9 @@ using Course_project.Data;
 using Course_project.Helpers;
 using Course_project.Models;
 using Course_project.Models.Enums;
+using Course_project.Services;
 using Course_project.ViewModels;
+using Course_project.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -130,7 +132,7 @@ namespace Course_project.Controllers
             string userId;
             if (string.IsNullOrEmpty(id))
             {
-                userId = GetUserId();
+                userId = User.GetUserId();
             }
             else { userId = id; }
             name = _context.Users.Find(userId).UserName;
@@ -149,19 +151,6 @@ namespace Course_project.Controllers
                 Collections = viewModelOptions.Result.Items
             };
             return View(viewModel);
-        }
-
-
-        public string GetUserId()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                var userId = claim.Value;
-                return userId;
-            }
-            return null;
         }
     }
 }

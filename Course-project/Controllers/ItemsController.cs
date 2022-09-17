@@ -12,6 +12,9 @@ using Course_project.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using PusherServer;
+using Course_project.ViewModels.Items;
+using Course_project.Services;
+using System.Diagnostics;
 
 namespace Course_project.Controllers
 {
@@ -38,7 +41,7 @@ namespace Course_project.Controllers
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             IndexItemViewModel viewModel = new IndexItemViewModel
             {
-                UserId = GetUserId(),
+                UserId = User.GetUserId(),
                 PageViewModel = pageViewModel,
                 Items = items
             };
@@ -49,6 +52,18 @@ namespace Course_project.Controllers
         {
             var tag = _context.Tags.FirstOrDefault(m => m.Name == id);
             var tagId = tag.Id;
+            var items = GetItemsForTagSearch(tagId);
+
+            return View(new TagSearchViewModel
+            {
+                items = items,
+                tag = tag,
+                userId = User.GetUserId()
+            });
+        }
+
+        private List<Item> GetItemsForTagSearch(string? tagId)
+        {
             var connections = _context.TagConnections.Where(m => m.TagId == tagId);
             var items = new List<Item>();
             foreach (var connection in connections)
@@ -59,18 +74,17 @@ namespace Course_project.Controllers
                     items.Add(t);
                 }
             }
-
-            return View(new TagSearchViewModel
-            {
-                items = items,
-                tag = tag,
-                userId = GetUserId()
-            });
+            return items;
         }
 
 
-
         public async Task<IActionResult> Details(int? id)
+        {
+            return await GetDetailsAndDeleteViewModel(id);
+        }
+
+
+        private async Task<IActionResult> GetDetailsAndDeleteViewModel(int? id)
         {
             if (id == null || _context.Items == null)
             {
@@ -91,7 +105,24 @@ namespace Course_project.Controllers
                 return NotFound();
             }
 
-            var tagConnections = _context.TagConnections.Where(m => m.ItemId == id);
+            var tagList = GetTagsForDetailsPage(id);
+            var comments = _context.Comments.Where(m => m.ItemId == id).ToList();
+
+            var response = new DetailsItemViewModel
+            {
+                comments = comments,
+                userName = HttpContext.User.Identity.Name,
+                userId = User.GetUserId(),
+                collection = collection,
+                item = item,
+                tags = tagList
+            };
+            return View(response);
+        }
+
+        private List<Tag> GetTagsForDetailsPage(int? itemId)
+        {
+            var tagConnections = _context.TagConnections.Where(m => m.ItemId == itemId);
             var tagList = new List<Tag>();
             if (tagConnections != null)
             {
@@ -100,21 +131,8 @@ namespace Course_project.Controllers
                     tagList.Add(_context.Tags.Find(tag.TagId));
                 }
             }
-
-            var comments = _context.Comments.Where(m => m.ItemId == id).ToList();
-
-            var response = new DetailsItemViewModel
-            {
-                comments = comments,
-                userName = HttpContext.User.Identity.Name,
-                userId = GetUserId(),
-                collection = collection,
-                item = item,
-                tags = tagList
-            };
-            return View(response);
+            return tagList;
         }
-
 
 
         [Authorize]
@@ -130,13 +148,12 @@ namespace Course_project.Controllers
             return View(response);
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateItemViewModel item)
         {
             if (ModelState.IsValid)
             {
-
                 var result = await _photoService.AddPhotoAsync(item.Image);
                 item.ThisItem.ImagePath = result.Url.ToString();
                 _context.Add(item.ThisItem);
@@ -148,8 +165,12 @@ namespace Course_project.Controllers
             return View(new CreateItemViewModel(_context.Collections.FirstOrDefault(m => m.Id == item.ThisItem.CollectionId), item.ThisItem));
         }
 
-        public async Task CreateTags(string input, int itemID)
+        private async Task CreateTags(string input, int itemID)
 		{
+            if (string.IsNullOrEmpty(input))
+            {
+                return;
+            }
             var tags = input.Split(',');
             foreach(var tag in tags)
 			{
@@ -180,7 +201,6 @@ namespace Course_project.Controllers
                 return NotFound();
             }
 
-
             var item = await _context.Items.FindAsync(id);
             
             if (item == null)
@@ -202,7 +222,7 @@ namespace Course_project.Controllers
             return View(response);
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditItemViewModel input)
@@ -237,43 +257,30 @@ namespace Course_project.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Items == null)
-            {
-                return NotFound();
-            }
-            int collectionId = 0;
-            var item = await _context.Items.FindAsync(id);
-            if (item != null)
-            {
-                collectionId = item.CollectionId;
-                _context.Items.Remove(item);
-            }
+            return await GetDetailsAndDeleteViewModel(id);
+            //if (id == null || _context.Items == null)
+            //{
+            //    return NotFound();
+            //}
+            //int collectionId = 0;
+            //var item = await _context.Items.FindAsync(id);
+            //if (item != null)
+            //{
+            //    collectionId = item.CollectionId;
+            //    _context.Items.Remove(item);
+            //}
 
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
 
-            return RedirectToAction("CollectionItems", "Collection", new { CollectionId = collectionId });
+            ////return Content("ok");
+            //return RedirectToAction("Index", "Home", new { CollectionId = collectionId });
         }
 
         private bool ItemExists(int id)
         {
           return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-
-        
-
-        public string GetUserId()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                var userId = claim.Value;
-                return userId;
-            }
-            return null;
         }
     }
 }

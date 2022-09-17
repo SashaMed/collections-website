@@ -373,12 +373,12 @@ namespace Course_project.Migrations
                         {
                             Id = "sasha",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6ee71380-3985-44bb-8870-9c7ef9fa77b6",
+                            ConcurrencyStamp = "1edd48e8-899b-45a8-b623-e505a2886df0",
                             Email = "sirlolka@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa81d6f3-163e-41ba-86e8-aaeafd84aa03",
+                            SecurityStamp = "05221b28-d8b7-4ff1-a2ad-cfb7ddf8ab10",
                             TwoFactorEnabled = false,
                             UserName = "sasha"
                         });

@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Course_project.Data;
+using Course_project.Services;
 using Course_project.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,7 @@ namespace Course_project.Controllers
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             HomeViewModel viewModel = new HomeViewModel
             {
-                UserId = GetUserId(),
+                UserId = User.GetUserId(),
                 Collections = collection.Take(5).Reverse().ToList(),
                 Tags = _context.Tags.ToList(),
                 PageViewModel = pageViewModel,
@@ -52,19 +53,6 @@ namespace Course_project.Controllers
             _context.Roles.Add(identityRole1);
             await _context.SaveChangesAsync();
             return Content("ok");
-        }
-
-
-        public string GetUserId()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                var userId = claim.Value;
-                return userId;
-            }
-            return null;
         }
     }
 }

@@ -24,7 +24,7 @@ connection.start().then(function () {
 
 $("#sendMessage").click(function () {
     var receiver = '';
-    var userId = $('userId').val();
+    var userId = $("#userId").val();
     var sender = $("#sender").val();
     var itemId = $("#itemId").val() - 0;
     var message = $("#message").val();

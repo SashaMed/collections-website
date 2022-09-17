@@ -3,7 +3,9 @@ using Course_project.Data;
 using Course_project.Helpers;
 using Course_project.Models;
 using Course_project.Models.Enums;
+using Course_project.Services;
 using Course_project.ViewModels;
+using Course_project.ViewModels.Collections;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -56,7 +58,7 @@ namespace Course_project.Controllers
                 items = await _context.Items.Skip((page - 1) * pageSize).Take(pageSize).Where(e => e.CollectionId == CollectionId).ToListAsync();
             }
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-            var response = new CollectionItemsViewModel(items, _context.Collections.FirstOrDefault(m => m.Id == CollectionId), pageViewModel, GetUserId());
+            var response = new CollectionItemsViewModel(items, _context.Collections.FirstOrDefault(m => m.Id == CollectionId), pageViewModel, User.GetUserId());
             return View(response);
 
         }
@@ -94,9 +96,17 @@ namespace Course_project.Controllers
                 return View(input);
             }
 
-            var collection = new Collection
+            var collection = CreateCollectionFromViewModel(input);
+            _context.Collections.Add(collection);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("UserPage", "Account");
+        }
+
+        private Collection CreateCollectionFromViewModel(CreateCollectionViewModel input)
+        {
+            return new Collection
             {
-                AuthorId = GetUserId(),
+                AuthorId = User.GetUserId(),
                 Name = input.Name,
                 Type = input.Type,
                 Description = input.Description,
@@ -115,23 +125,7 @@ namespace Course_project.Controllers
                 LargeStringName1 = input.LargeStringName1,
                 LargeStringName2 = input.LargeStringName2,
                 LargeStringName3 = input.LargeStringName3
-
             };
-            _context.Collections.Add(collection);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("UserPage", "Account");
-        }
-
-        public string GetUserId()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                var userId = claim.Value;
-                return userId;
-            }
-            return null;
         }
     }
 }

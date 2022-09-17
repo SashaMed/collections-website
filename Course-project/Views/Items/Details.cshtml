@@ -8,15 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
     <script src="//js.pusher.com/4.0/pusher.min.js"></script>
 <div class="container">
-
-	<!-- Portfolio Item Heading -->
 	<h1 class="my-4">
 		@Model.item.Name
 		</h1>
 		<h3> 	<a asp-action="CollectionItems" asp-controller="Collection" asp-route-CollectionId="@Model.collection.Id" > @Model.collection.Name</a> </h3>
-
-
-	<!-- Portfolio Item Row -->
 	<div class="row">
 
 		<div class="col-md-8">
@@ -123,13 +118,15 @@
 	</div>
 
 	</div>
-	@if (Model.userName == Model.item.AuthorId || User.IsInRole("admin"))
+	@if (Model.userId == Model.item.AuthorId || User.IsInRole("admin"))
 	{
 		<section class="jumbotron text-center">
 		<div class="container">
 			<p>
+						<form method="post" asp-action="Edit" enctype="multipart/form-data">s
 				<a asp-area="" asp-controller="Items" asp-action="Edit" asp-route-id="@Model.item.Id" class="btn btn-primary my-2">Edit</a>
-				<a asp-area="" asp-controller="Items" asp-action="Delete" asp-route-id="@Model.item.Id" class="btn btn-danger my-2">Delete</a>
+				<a type="submit" asp-controller="Items"   id="deleteItem" asp-action="Delete" asp-route-id="@Model.item.Id" class="btn btn-danger my-2">Delete</a>
+			</form>
 			</p>
 		</div>
 	</section>
@@ -146,7 +143,6 @@
 			@comment.Message
 		</div>
 		}
-
              <div id="messagesList"></div>
 
     </div>
@@ -165,6 +161,7 @@
 
 @Html.Hidden("userId", Model.userId)
 @Html.Hidden("itemId", Model.item.Id)
+@Html.Hidden("itemId2", Model.item.Id)
 @Html.Hidden("sender", Model.userName) 
 ​
 @section Scripts
@@ -172,4 +169,5 @@
 	<script src="~/js/likes.js" asp-append-version="true"></script>	
     <script src="~/microsoft-signalr/signalr.js"></script>
     <script src="~/js/chat.js" asp-append-version="true"></script>
+	<script src="~/js/delete.js" asp-append-version="true"></script>	
 }

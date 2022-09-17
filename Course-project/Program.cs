@@ -20,7 +20,7 @@ builder.Services.AddTransient<ApplicationDbContext>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>(); ;
 builder.Services.AddSignalR();
-
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 app.MapHub<CommentHub>("/items/Details");
