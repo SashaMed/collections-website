@@ -46,6 +46,11 @@ namespace Course_project.Controllers
 
         public async Task<IActionResult> CollectionItems(int? CollectionId, int page = 1)
         {
+            return await GetDetailsAndDeleteViewModel(CollectionId, page);
+        }
+
+        private async Task<IActionResult> GetDetailsAndDeleteViewModel(int? CollectionId, int page = 1)
+        {
             int pageSize = 15;
             List<Item> items = new List<Item>();
             var count = await _context.Items.Where(m => m.CollectionId == CollectionId).CountAsync();
@@ -60,7 +65,6 @@ namespace Course_project.Controllers
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             var response = new CollectionItemsViewModel(items, _context.Collections.FirstOrDefault(m => m.Id == CollectionId), pageViewModel, User.GetUserId());
             return View(response);
-
         }
 
         [Authorize]
@@ -71,13 +75,20 @@ namespace Course_project.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id, int page = 1)
+        {
+            return await GetDetailsAndDeleteViewModel(id, page);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Delete(int? id)
         {
             var collection = _context.Collections.FirstOrDefault(m => m.Id == id);
             if (collection != null)
             {
                 var items = _context.Items.Where(m => m.CollectionId == collection.Id).ToList();
-                foreach(var item in items)
+                foreach (var item in items)
                 {
                     _context.Items.Remove(item);
                 }
@@ -86,7 +97,6 @@ namespace Course_project.Controllers
             }
             return RedirectToAction("UserPage", "Account");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateCollectionViewModel input)

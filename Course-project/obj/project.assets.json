@@ -10425,11 +10425,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\education\\itra\\Course-project\\Course-project\\Course-project.csproj",
+      "projectUniqueName": "D:\\education\\collections-website\\Course-project\\Course-project.csproj",
       "projectName": "Course-project",
-      "projectPath": "D:\\education\\itra\\Course-project\\Course-project\\Course-project.csproj",
+      "projectPath": "D:\\education\\collections-website\\Course-project\\Course-project.csproj",
       "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-      "outputPath": "D:\\education\\itra\\Course-project\\Course-project\\obj\\",
+      "outputPath": "D:\\education\\collections-website\\Course-project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",

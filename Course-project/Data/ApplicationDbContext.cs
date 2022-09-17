@@ -20,7 +20,8 @@ namespace Course_project.Data
                 {
                     Id = "sasha",
                     UserName = "sasha",
-                    Email ="sirlolka@gmail.com"
+                    Email = "sirlolka@gmail.com"
+
                 });
             base.OnModelCreating(builder);
         }

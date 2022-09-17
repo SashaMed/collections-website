@@ -260,22 +260,26 @@ namespace Course_project.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             return await GetDetailsAndDeleteViewModel(id);
-            //if (id == null || _context.Items == null)
-            //{
-            //    return NotFound();
-            //}
-            //int collectionId = 0;
-            //var item = await _context.Items.FindAsync(id);
-            //if (item != null)
-            //{
-            //    collectionId = item.CollectionId;
-            //    _context.Items.Remove(item);
-            //}
+        }
 
-            //await _context.SaveChangesAsync();
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Items == null)
+            {
+                return NotFound();
+            }
+            int collectionId = 0;
+            var item = await _context.Items.FindAsync(id);
+            if (item != null)
+            {
+                collectionId = item.CollectionId;
+                _context.Items.Remove(item);
+            }
 
-            ////return Content("ok");
-            //return RedirectToAction("Index", "Home", new { CollectionId = collectionId });
+            await _context.SaveChangesAsync();
+            return RedirectToAction("CollectionItems", "Collection", new { CollectionId = collectionId });
         }
 
         private bool ItemExists(int id)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/is3kmncP6TU8/6Lvn4jNoVni68dbs9g799Il7kAt5NRkIYYbOmrCgj7O/d70ko9VbkXb8FQENu/wx3e+wRXDA==",
+  "dgSpecHash": "Wi+GaVcC0ctw3diNKQ8JtR8HLiA+4wN8jemM/5amEQAvX/Xmww5V6fGMFLIJcSnaqKkYADM7uKgPDTNDiZvlzw==",
   "success": true,
-  "projectFilePath": "D:\\education\\itra\\Course-project\\Course-project\\Course-project.csproj",
+  "projectFilePath": "D:\\education\\collections-website\\Course-project\\Course-project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alexander\\.nuget\\packages\\cloudinarydotnet\\1.19.0\\cloudinarydotnet.1.19.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -7,7 +7,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
     <script src="//js.pusher.com/4.0/pusher.min.js"></script>
 <div class="container">
-	<h1>Delete this item?</h1>
+<section class="jumbotron text-center">
+	<div class="container">
+		<h1 class="jumbotron-heading">Delete this item?</h1>
+		<p>
+				<form method="post" asp-controller="Items" asp-action="Delete" asp-route-id="@Model.item.Id">
+					<input type="submit" value="Delete" class="btn btn-danger"></>
+					<input type="submit" value="Return to collection" asp-action="CollectionItems" asp-controller="Collection" asp-route-CollectionId="@Model.collection.Id" class="btn btn-secondary"> </>
+				</form>
+		</p>
+	</div>
+</section>
 	<h1 class="my-4">
 		@Model.item.Name
 		</h1>
