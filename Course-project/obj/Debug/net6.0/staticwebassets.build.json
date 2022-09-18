@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ib6bMkciZU4hlhyeZYV6vyVD+4FqH6ubc8bzQ33FbPU=",
+  "Hash": "hM7sZBNyzMxHJ55k9y7/KDcWUMga6Dcj4Dm0JH2z0Jk=",
   "Source": "Course-project",
   "BasePath": "_content/Course-project",
   "Mode": "Default",
@@ -85,6 +85,40 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "D:\\education\\collections-website\\Course-project\\wwwroot\\css\\StyleSheetDarkk.css",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\collections-website\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "css/StyleSheetDarkk.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleSheetDarkk.css"
+    },
+    {
+      "Identity": "D:\\education\\collections-website\\Course-project\\wwwroot\\css\\StyleSheetLight.css",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\collections-website\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "css/StyleSheetLight.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleSheetLight.css"
+    },
+    {
       "Identity": "D:\\education\\collections-website\\Course-project\\wwwroot\\favicon.ico",
       "SourceId": "Course-project",
       "SourceType": "Discovered",
@@ -100,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\education\\collections-website\\Course-project\\wwwroot\\js\\changeStyle.js",
+      "SourceId": "Course-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\education\\collections-website\\Course-project\\wwwroot\\",
+      "BasePath": "_content/Course-project",
+      "RelativePath": "js/changeStyle.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\changeStyle.js"
     },
     {
       "Identity": "D:\\education\\collections-website\\Course-project\\wwwroot\\js\\chat.js",

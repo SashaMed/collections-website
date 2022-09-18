@@ -37,5 +37,7 @@ namespace Course_project.Data
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Like> Likes { get; set; }
+
+        public DbSet<StyleConnections> StyleConnections { get; set; }
     }
 }

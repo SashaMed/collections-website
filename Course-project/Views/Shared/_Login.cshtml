@@ -13,23 +13,23 @@
 		@if (User.IsInRole("admin"))
 		{
 		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+			<a class="nav-link text-to-change" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
 		</li>
 		}
 		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UserPage" asp-route-name="@User.Identity.Name" title="Manage">My page</a>
+			<a class="nav-link text-to-change" asp-area="" asp-controller="Account" asp-action="UserPage" asp-route-name="@User.Identity.Name">My page</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+			<a class="nav-link text-to-change" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
 		</li>
 	}
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+			<a class="nav-link text-to-change" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+			<a class="nav-link text-to-change" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
 		</li>
 	}
 </ul>

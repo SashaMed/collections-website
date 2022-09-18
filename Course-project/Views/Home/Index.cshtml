@@ -14,18 +14,6 @@
 	<h1>Welcome to collection website!</h1>
 </section>
 
-@if (User.Identity.IsAuthenticated)
-{
-	<div class="text-center">
-		<span>Logged In</span>
-	</div>
-}
-else
-{
-	<div class="text-center">
-		<span>Not Logged In</span>
-	</div>
-}
 
 
 <div class="album py-5 bg-light">
@@ -33,7 +21,9 @@ else
 <div id="chartdiv"></div>
 </div>
 
+<section class="jumbotron text-center">
 <h1>5 newly created Collections</h1>
+</section>
 <table class="table">
 	<tr>
 		<th>
@@ -74,7 +64,9 @@ else
 				}
 				else
 				{
+				<section class="jumbotron text-center">
 				<h1>Newly created Items </h1>
+				</section>
 				<h5>Page @Model.PageViewModel.PageNumber</h5>
 				foreach (var item in Model.Items)
 				{

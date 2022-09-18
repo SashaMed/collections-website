@@ -126,7 +126,7 @@ namespace Course_project.Controllers
 
 
 
-        public async Task<IActionResult> UserPage(CollectionType? type, string id, string name = "defaulf", int page = 1,
+        public async Task<IActionResult> UserPage(CollectionType? type, string id, string name = "default", int page = 1,
                     SortState sortOrder = SortState.NameAsc)
         {
             string userId;
@@ -134,7 +134,15 @@ namespace Course_project.Controllers
             {
                 userId = User.GetUserId();
             }
-            else { userId = id; }
+            else
+            {
+                if (!name.Equals("default"))
+                {
+                    userId = User.GetUserId();
+                }
+                else userId = id; 
+            }
+
             name = _context.Users.Find(userId).UserName;
             IQueryable<Collection> collections = _context.Collections.Where(m => m.AuthorId == userId);
 

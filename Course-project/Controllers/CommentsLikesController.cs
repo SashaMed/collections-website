@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Diagnostics;
+using System.Security.Claims;
 using Course_project.Data;
 using Course_project.Models;
 using Course_project.Services;
@@ -73,6 +74,44 @@ namespace Course_project.Controllers
             _context.Comments.Add(message);
             await _context.SaveChangesAsync();
 
+            return Content("ok");
+        }
+
+        public IActionResult GetStyle()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var connection = _context.StyleConnections.FirstOrDefault(m => m.UserId == User.GetUserId());
+                if (connection != null)
+                {
+                    if (connection.Dark)
+                    {
+                        return Content("dark");
+                    }
+                }
+            }
+            return Content("light");
+        }
+
+        [HttpPost]
+        public IActionResult PostStyle()
+        {
+            var connection = _context.StyleConnections.FirstOrDefault(m => m.UserId == User.GetUserId());
+            if (connection == null)
+            {
+                _context.StyleConnections.Add(new StyleConnections
+                {
+                    UserId = User.GetUserId(),
+                    Dark = true
+                });
+                _context.SaveChanges();
+            }
+            else
+            {
+                connection.Dark = !connection.Dark;
+                _context.StyleConnections.Update(connection);
+                _context.SaveChanges();
+            }
             return Content("ok");
         }
     }

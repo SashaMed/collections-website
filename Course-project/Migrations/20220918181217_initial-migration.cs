@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Course_project.Migrations
 {
-    public partial class initialmig : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -139,6 +139,20 @@ namespace Course_project.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Likes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StyleConnections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dark = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StyleConnections", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -276,7 +290,7 @@ namespace Course_project.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "sasha", 0, "1edd48e8-899b-45a8-b623-e505a2886df0", "sirlolka@gmail.com", false, false, null, null, null, null, null, false, "05221b28-d8b7-4ff1-a2ad-cfb7ddf8ab10", false, "sasha" });
+                values: new object[] { "sasha", 0, "036a90ac-675c-4e7f-91b4-fc3b188a52b2", "sirlolka@gmail.com", false, false, null, null, null, null, null, false, "23a38e42-e67d-411b-becd-d84379a9569a", false, "sasha" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -346,6 +360,9 @@ namespace Course_project.Migrations
 
             migrationBuilder.DropTable(
                 name: "Likes");
+
+            migrationBuilder.DropTable(
+                name: "StyleConnections");
 
             migrationBuilder.DropTable(
                 name: "TagConnections");

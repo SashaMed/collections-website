@@ -5,7 +5,20 @@
 	ViewData["Title"] = "User page";
 }
 
-
+<div>
+	@if (User.Identity.IsAuthenticated)
+{
+@if (Model.UserName == User.Identity.Name){
+<h4>Light
+<label class="switch" >
+	<input href="#" onclick="changeCSS('/css/StyleSheetLight.css', 0);" type="checkbox" id="check-style">
+	<span class="slider round"></span>
+</label>
+ Dark
+		</h4>
+}
+}
+</div>
 <section class="jumbotron text-center">
 	<div class="container">
 		<h1 class="jumbotron-heading">@Model.UserName page</h1>

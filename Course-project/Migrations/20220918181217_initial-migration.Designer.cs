@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220905144439_initialmig")]
-    partial class initialmig
+    [Migration("20220918181217_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,6 +220,26 @@ namespace Course_project.Migrations
                     b.ToTable("Likes");
                 });
 
+            modelBuilder.Entity("Course_project.Models.StyleConnections", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Dark")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StyleConnections");
+                });
+
             modelBuilder.Entity("Course_project.Models.Tag", b =>
                 {
                     b.Property<string>("Id")
@@ -375,12 +395,12 @@ namespace Course_project.Migrations
                         {
                             Id = "sasha",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1edd48e8-899b-45a8-b623-e505a2886df0",
+                            ConcurrencyStamp = "036a90ac-675c-4e7f-91b4-fc3b188a52b2",
                             Email = "sirlolka@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05221b28-d8b7-4ff1-a2ad-cfb7ddf8ab10",
+                            SecurityStamp = "23a38e42-e67d-411b-becd-d84379a9569a",
                             TwoFactorEnabled = false,
                             UserName = "sasha"
                         });

@@ -23,7 +23,6 @@ namespace Course_project.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IPhotoService _photoService;
 
-
         public ItemsController(ApplicationDbContext context, IPhotoService photoService)
         {
             _context = context;
@@ -157,6 +156,7 @@ namespace Course_project.Controllers
                 var result = await _photoService.AddPhotoAsync(item.Image);
                 item.ThisItem.ImagePath = result.Url.ToString();
                 _context.Add(item.ThisItem);
+                //_itemsRepository.AddItem(item.ThisItem);S
                 await _context.SaveChangesAsync();
                 await CreateTags(item.Tags[0], item.ThisItem.Id);
                 return RedirectToAction("CollectionItems", "Collection", new { CollectionId = item.ThisItem.CollectionId });
